@@ -21,8 +21,8 @@ request.onsuccess = function(event) {
 
     // check if app is online, if yes run `uploadTransaction()' function to send all local db data to api
     if (navigator.onLine) {
-        //
-        // uploadTransaction()
+        
+        uploadTransaction()
     }
 }
 
@@ -52,7 +52,7 @@ function uploadTransaction() {
     getAll.onsuccess = function() {
         // if there was data in indexedDB's store, let's send it to the api server
         if (getAll.result.length > 0) {
-            fetch('/api/transaction/...', {
+            fetch('/api/transaction/bulk', {
                 method: 'POST',
                 body: JSON.stringify(getAll.result),
                 headers: {
